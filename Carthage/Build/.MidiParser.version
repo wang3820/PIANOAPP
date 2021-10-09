@@ -1,0 +1,34 @@
+{
+  "Mac" : [
+    {
+      "swiftToolchainVersion" : "5.4.2 (swiftlang-1205.0.28.2 clang-1205.0.19.57)",
+      "hash" : "d8dc3304bbb71550e6e3bb32ab5421a7b5e50f2a969d0da2d60163ecc84b52bd",
+      "name" : "MidiParser",
+      "container" : "MidiParser.xcframework",
+      "identifier" : "macos-arm64_x86_64"
+    }
+  ],
+  "watchOS" : [
+
+  ],
+  "tvOS" : [
+
+  ],
+  "commitish" : "0.2",
+  "iOS" : [
+    {
+      "swiftToolchainVersion" : "5.4.2 (swiftlang-1205.0.28.2 clang-1205.0.19.57)",
+      "hash" : "19829bc09ebd9f07036ee8da1ae3c9e41501b94397eb4f365fa22b171ac109d5",
+      "name" : "MidiParser",
+      "container" : "MidiParser.xcframework",
+      "identifier" : "ios-arm64_i386_x86_64-simulator"
+    },
+    {
+      "swiftToolchainVersion" : "5.4.2 (swiftlang-1205.0.28.2 clang-1205.0.19.57)",
+      "hash" : "09a2a29dde048fd9c9c46bcc0f66d4c1a815db8cc658c7029101dc462386be59",
+      "name" : "MidiParser",
+      "container" : "MidiParser.xcframework",
+      "identifier" : "ios-arm64_armv7"
+    }
+  ]
+}

@@ -1,0 +1,4 @@
+framework module MidiParser {
+  header "MidiParser-Swift.h"
+  requires objc
+}
