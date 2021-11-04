@@ -33,6 +33,8 @@ enum Page {
     case Send
     case Connect
     case Receive
+    case ModeSelect
+    case FileTransfer
 }
 
 struct Peripheral: Identifiable{
@@ -192,12 +194,17 @@ class BLEManager: NSObject, ObservableObject, CBCentralManagerDelegate, CBPeriph
     @Published var isSwitchedOn:Bool = false
     @Published var isConnected:Bool = false
     @Published var trueDisconnection = false
+    @Published var isTransfering:Bool = false
     @Published var peripherals = [Peripheral]()
     @Published var cbperipherals = [CBPeripheral]()
     @Published var names = [String]()
     @Published var connectedName:String!
     @Published var receivedValue:String!
-    @Published var previouslyConnected:CBPeripheral! = nil;
+    @Published var previouslyConnected:CBPeripheral! = nil
+    @Published var rcv_ct = 0
+    @Published var dir_listing = false
+    @Published var filesOnCard = [String]()
+    @Published var selectedFile:String?
     
     override init(){
         super.init()
@@ -252,11 +259,12 @@ class BLEManager: NSObject, ObservableObject, CBCentralManagerDelegate, CBPeriph
         myPeripheral = peripheral
         myPeripheral.delegate = self
         myCentral.connect(peripheral, options: nil)
-        self.previouslyConnected = peripheral
+        //self.previouslyConnected = peripheral
     }
     
     func centralManager(_ central: CBCentralManager, didConnect peripheral: CBPeripheral) {
         self.isConnected = true
+        self.previouslyConnected = peripheral
         myPeripheral.discoverServices(nil)
         stopScanning()
     }
@@ -298,7 +306,10 @@ class BLEManager: NSObject, ObservableObject, CBCentralManagerDelegate, CBPeriph
             if let readData = characteristic.value{
                 let ASCIIstring = NSString(data: readData, encoding: String.Encoding.utf8.rawValue)
                 self.receivedValue = ASCIIstring as String?
-                //print(self.receivedValue!)
+                if (self.receivedValue != nil) {
+                    print(self.receivedValue!)
+                }
+                self.handleCommand(received: self.receivedValue)
                 
             }
         }
@@ -443,4 +454,45 @@ class BLEManager: NSObject, ObservableObject, CBCentralManagerDelegate, CBPeriph
     func stopAdvertising(){
         myPeripheralManager.stopAdvertising()
     }
+    
+    func handleCommand(received msg: String?) {
+        if msg == nil {
+            return
+        }
+        
+        if msg == "Transfer" {
+            self.isTransfering = true
+        }
+        
+        if msg == "rcvd" {
+            self.rcv_ct += 1
+        }
+        
+        if msg == "eof" {
+            print(self.rcv_ct)
+            self.isTransfering = false
+            self.rcv_ct = 0
+        }
+        
+        if msg == "Listing" {
+            self.dir_listing = true
+            return
+        }
+        
+        if msg == "list_end" {
+            self.dir_listing = false
+            print(self.filesOnCard)
+        }
+        
+        if self.dir_listing {
+            if !filesOnCard.contains(msg!) {
+                filesOnCard.append(msg!) // using ! because it has been checked before
+            }
+        }
+        
+        
+    }
+    
+    
+    
 }

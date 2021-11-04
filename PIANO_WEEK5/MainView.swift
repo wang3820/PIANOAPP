@@ -25,11 +25,15 @@ struct MainView: View {
         case .Front:
             FrontPageView(viewRouter: viewRouter, bleManager: bleManager)
         case .Send:
-            SendView(viewRouter: viewRouter)
+            SendView(viewRouter: viewRouter, bleManager: bleManager)
         case .Connect:
             ConnectView(viewRouter: viewRouter,bleManager: bleManager)
         case .Receive:
             ReceiveView(viewRouter: viewRouter,bleManager: bleManager)
+        case .ModeSelect:
+            ModeSelectView(viewRouter: viewRouter,bleManager: bleManager)
+        case .FileTransfer:
+            FileTransferPopUpView(viewRouter: viewRouter,bleManager: bleManager)
         }
     }
 }

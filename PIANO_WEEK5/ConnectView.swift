@@ -19,11 +19,14 @@ struct ConnectView: View {
     @State var rChanged = false
     @State var gChanged = false
     @State var bChanged = false
+    @State var showPopUp = false
     
     @ObservedObject var bleManager:BLEManager
     @State var sendSize = 16
     
     let placeHolderMessage:String = "Please input text..."
+    
+
     var body: some View {
         ZStack{
             Color.black.ignoresSafeArea(.all)
@@ -97,16 +100,23 @@ struct ConnectView: View {
                             self.fileName = fileUrl.lastPathComponent
                             
                             let rawDataArray = getFile(fileUrl: fileUrl)
-                            
+//                            midiReduction(fileUrl: fileUrl)
                             
                             if bleManager.isConnected {
                                 bleManager.sendData(send: "File Transfer")
                                 bleManager.sendData(send: self.fileName)
                                 //bleManager.sendBytes(send: [UInt8](midiReduction(fileUrl: fileUrl)), number: 185)
-                                bleManager.sendBytes(send: rawDataArray!, number: 185)
+                                
+                                bleManager.sendBytes(send: rawDataArray!, number: 128)
                                 bleManager.sendData(send: "EOF")
                                 
                             }
+                            
+//                            viewRouter.currentView = .FileTransfer
+//                            
+//                            if bleManager.isTransfering {
+//                                viewRouter.currentView = .FileTransfer
+//                            }
                         }
                         catch{
                             print("Error Reading File")
@@ -134,38 +144,11 @@ struct ConnectView: View {
                         }
                     })
                     
-                    HStack(){
-                        Button(action: {
-                            if bleManager.isConnected{
-                            self.bleManager.sendData(send: "red")
-                            }
-                        }, label: {
-                            Text("").padding(.all,10).padding([.leading,.trailing],5).foregroundColor(.white).background(Color.red).cornerRadius(15)
-                        })
-                        
-                        Button(action: {
-                            if bleManager.isConnected{
-                            self.bleManager.sendData(send: "green")
-                            }
-                        }, label: {
-                            Text("").padding(.all,10).padding([.leading,.trailing],5).foregroundColor(.white).background(Color.green).cornerRadius(15)
-                        })
-                        
-                        Button(action: {
-                            if bleManager.isConnected{
-                            self.bleManager.sendData(send: "blue")
-                            }
-                        }, label: {
-                            Text("").padding(.all,10).padding([.leading,.trailing],5).foregroundColor(.white).background(Color.blue).cornerRadius(15)
-                        })
-                        
-                        Button(action: {
-                            if self.bleManager.isConnected{
-                                self.bleManager.sendData(send: "off")}
-                        }, label: {
-                            Text("").padding(.all,10).padding([.leading,.trailing],5).foregroundColor(.white).background(Color.white).cornerRadius(15)
-                        })
-                    }
+                    Button(action: {
+                        viewRouter.currentView = .Send
+                    }, label: {
+                        Text("Send").fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/).foregroundColor(.green).padding(.all,10).padding([.leading, .trailing], 30).background(Color.black.opacity(0.5)).cornerRadius(20)
+                    })
                     
                     Slider(
                         value: $r,

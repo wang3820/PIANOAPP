@@ -7,8 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		715CD6E0270B6A3B008B1C3C /* MidiParser.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 715CD6DF270B6A3B008B1C3C /* MidiParser.xcframework */; };
-		715CD6E1270B6A3B008B1C3C /* MidiParser.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 715CD6DF270B6A3B008B1C3C /* MidiParser.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		715F567B27321457008984F2 /* MidiParser.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 715F567A27321457008984F2 /* MidiParser.xcframework */; };
 		71D64683270758FD00DFF514 /* PIANO_WEEK5App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71D64682270758FD00DFF514 /* PIANO_WEEK5App.swift */; };
 		71D64685270758FD00DFF514 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71D64684270758FD00DFF514 /* ContentView.swift */; };
 		71D6468A270758FF00DFF514 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 71D64689270758FF00DFF514 /* Preview Assets.xcassets */; };
@@ -28,7 +27,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				715CD6E1270B6A3B008B1C3C /* MidiParser.xcframework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -36,7 +34,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		715CD6DF270B6A3B008B1C3C /* MidiParser.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = MidiParser.xcframework; path = Carthage/Build/MidiParser.xcframework; sourceTree = "<group>"; };
+		715F567A27321457008984F2 /* MidiParser.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = MidiParser.xcframework; path = Carthage/Build/MidiParser.xcframework; sourceTree = "<group>"; };
 		71D6467F270758FD00DFF514 /* PIANO_WEEK5.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PIANO_WEEK5.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		71D64682270758FD00DFF514 /* PIANO_WEEK5App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PIANO_WEEK5App.swift; sourceTree = "<group>"; };
 		71D64684270758FD00DFF514 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -56,7 +54,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				715CD6E0270B6A3B008B1C3C /* MidiParser.xcframework in Frameworks */,
+				715F567B27321457008984F2 /* MidiParser.xcframework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -66,7 +64,7 @@
 		715CD6DE270B6A3B008B1C3C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				715CD6DF270B6A3B008B1C3C /* MidiParser.xcframework */,
+				715F567A27321457008984F2 /* MidiParser.xcframework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -158,6 +156,9 @@
 				Base,
 			);
 			mainGroup = 71D64676270758FD00DFF514;
+			packageReferences = (
+				719E86FD27321050003DBA09 /* XCRemoteSwiftPackageReference "MidiParser" */,
+			);
 			productRefGroup = 71D64680270758FD00DFF514 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -323,6 +324,10 @@
 				DEVELOPMENT_ASSET_PATHS = "\"PIANO_WEEK5/Preview Content\"";
 				DEVELOPMENT_TEAM = BWX3FHP57B;
 				ENABLE_PREVIEWS = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/MidiParser.xcframework/ios-arm64_armv7",
+				);
 				INFOPLIST_FILE = PIANO_WEEK5/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -345,6 +350,10 @@
 				DEVELOPMENT_ASSET_PATHS = "\"PIANO_WEEK5/Preview Content\"";
 				DEVELOPMENT_TEAM = BWX3FHP57B;
 				ENABLE_PREVIEWS = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/MidiParser.xcframework/ios-arm64_armv7",
+				);
 				INFOPLIST_FILE = PIANO_WEEK5/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -380,6 +389,17 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		719E86FD27321050003DBA09 /* XCRemoteSwiftPackageReference "MidiParser" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/matsune/MidiParser.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
 	};
 	rootObject = 71D64677270758FD00DFF514 /* Project object */;
 }

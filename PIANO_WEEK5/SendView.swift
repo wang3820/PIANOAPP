@@ -10,6 +10,7 @@ import SwiftUI
 struct SendView: View {
     
     @StateObject var viewRouter:ViewRouter
+    @ObservedObject var bleManager:BLEManager
     @State private var text:String = ""
     
     let placeHolderMessage:String = "Please input text..."
@@ -45,13 +46,92 @@ struct SendView: View {
                     Spacer()
                 }
                 
+                HStack(){
+                    Button(action: {
+                        if bleManager.isConnected{
+                        self.bleManager.sendData(send: "red")
+                        }
+                    }, label: {
+                        Text("").padding(.all,10).padding([.leading,.trailing],5).foregroundColor(.white).background(Color.red).cornerRadius(15)
+                    })
+                    
+                    Button(action: {
+                        if bleManager.isConnected{
+                        self.bleManager.sendData(send: "green")
+                        }
+                    }, label: {
+                        Text("").padding(.all,10).padding([.leading,.trailing],5).foregroundColor(.white).background(Color.green).cornerRadius(15)
+                    })
+                    
+                    Button(action: {
+                        if bleManager.isConnected{
+                        self.bleManager.sendData(send: "blue")
+                        }
+                    }, label: {
+                        Text("").padding(.all,10).padding([.leading,.trailing],5).foregroundColor(.white).background(Color.blue).cornerRadius(15)
+                    })
+                    
+                    Button(action: {
+                        if self.bleManager.isConnected{
+                            self.bleManager.sendData(send: "off")}
+                    }, label: {
+                        Text("").padding(.all,10).padding([.leading,.trailing],5).foregroundColor(.white).background(Color.white).cornerRadius(15)
+                    })
+                }
+                
+                
+                
                 
                 Spacer()
+                HStack {
+                    Button(action: {
+                        if bleManager.isConnected {
+                            bleManager.sendData(send: "VIS")
+                        }
+                    }, label: {
+                        Text("VIS").padding(.all,10).padding([.leading,.trailing],30).foregroundColor(.white).background(Color.blue).cornerRadius(10)
+                    })
+                    Button(action: {
+                        if bleManager.isConnected {
+                            bleManager.sendData(send: "LTP")
+                        }
+                    }, label: {
+                        Text("LTP").padding(.all,10).padding([.leading,.trailing],30).foregroundColor(.white).background(Color.blue).cornerRadius(10)
+                    })
+                    
+                    Button(action: {
+                        if bleManager.isConnected {
+                            bleManager.sendData(send: "PA")
+                        }
+                    }, label: {
+                        Text("PA").padding(.all,10).padding([.leading,.trailing],30).foregroundColor(.white).background(Color.blue).cornerRadius(10)
+                    })
+                    
+                }
+                
+                //Spacer()
+                List(bleManager.filesOnCard, id:\.self){file in Button(action: {
+                    bleManager.selectedFile = file
+                    viewRouter.currentView = .ModeSelect         }, label: {
+                                    Text(file).foregroundColor(.blue)
+                    }).buttonStyle(PlainButtonStyle())
+                }.frame(width: 330.0, height: 200.0).background(Color.black)
+                
                 
                 Button(action: {
-                    viewRouter.currentView = .Front
+                    if bleManager.isConnected {
+                        bleManager.filesOnCard.removeAll()
+                        bleManager.sendData(send: "ListDIR")
+                    }
                 }, label: {
-                    Text("Back").padding(.all,10).padding([.leading,.trailing],30).foregroundColor(.white).background(Color.blue).cornerRadius(10).padding(.bottom, 150)
+                    Text("List Directory").padding(.all,10).padding([.leading,.trailing],30).foregroundColor(.white).background(Color.blue).cornerRadius(10)
+                })
+                
+                Spacer()
+                Button(action: {
+                    viewRouter.currentView = .Connect
+                }, label: {
+                    Text("Back").padding(.all,10).padding([.leading,.trailing],30).foregroundColor(.white).background(Color.blue).cornerRadius(10)
                 })
                 
                 
@@ -65,6 +145,6 @@ struct SendView: View {
 
 struct SendView_Previews: PreviewProvider {
     static var previews: some View {
-        SendView(viewRouter:ViewRouter())
+        SendView(viewRouter:ViewRouter(),bleManager: BLEManager())
     }
 }

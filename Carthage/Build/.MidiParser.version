@@ -1,8 +1,8 @@
 {
   "Mac" : [
     {
-      "swiftToolchainVersion" : "5.4.2 (swiftlang-1205.0.28.2 clang-1205.0.19.57)",
-      "hash" : "d8dc3304bbb71550e6e3bb32ab5421a7b5e50f2a969d0da2d60163ecc84b52bd",
+      "swiftToolchainVersion" : "5.5.1 (swiftlang-1300.0.31.4 clang-1300.0.29.6)",
+      "hash" : "13a9b42ec46ec67ccf81ae04a3b32a2f2ba5a822b0aa4a8f7132288957684256",
       "name" : "MidiParser",
       "container" : "MidiParser.xcframework",
       "identifier" : "macos-arm64_x86_64"
@@ -17,15 +17,15 @@
   "commitish" : "0.2",
   "iOS" : [
     {
-      "swiftToolchainVersion" : "5.4.2 (swiftlang-1205.0.28.2 clang-1205.0.19.57)",
-      "hash" : "19829bc09ebd9f07036ee8da1ae3c9e41501b94397eb4f365fa22b171ac109d5",
+      "swiftToolchainVersion" : "5.5.1 (swiftlang-1300.0.31.4 clang-1300.0.29.6)",
+      "hash" : "085224a6c700b31a0d00df34bc4ef6ace1447e3d7515c7cb871a12c03e966446",
       "name" : "MidiParser",
       "container" : "MidiParser.xcframework",
       "identifier" : "ios-arm64_i386_x86_64-simulator"
     },
     {
-      "swiftToolchainVersion" : "5.4.2 (swiftlang-1205.0.28.2 clang-1205.0.19.57)",
-      "hash" : "09a2a29dde048fd9c9c46bcc0f66d4c1a815db8cc658c7029101dc462386be59",
+      "swiftToolchainVersion" : "5.5.1 (swiftlang-1300.0.31.4 clang-1300.0.29.6)",
+      "hash" : "de1055e3c3b56a6f48b8acc0fa80bd27c7e8fd3e12a81b7bcd87086fde9150af",
       "name" : "MidiParser",
       "container" : "MidiParser.xcframework",
       "identifier" : "ios-arm64_armv7"
